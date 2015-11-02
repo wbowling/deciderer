@@ -54,7 +54,10 @@ var PollStore = Reflux.createStore({
         }
     },
     canVote() {
-        return (LoginStore.isLoggedIn() && this.hasPoll() && new Date().getTime() < data.enddate);
+        return (LoginStore.isLoggedIn() && this.isPollActive());
+    },
+    isPollActive() {
+        return (this.hasPoll() && new Date().getTime() < data.enddate);
     },
     isAdmin() {
         return (LoginStore.isLoggedIn() && LoginStore.getUid() === data.admin);

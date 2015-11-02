@@ -3,6 +3,7 @@
 var React = require("react");
 var PollActions = require('../../actions/PollActions');
 var LoginStore = require('../../stores/LoginStore');
+var PollStore = require('../../stores/PollStore');
 
 var {Input, Button, Row, Col} = require("react-bootstrap");
 
@@ -27,9 +28,9 @@ var AddPlace = React.createClass({
     },
 
     render () {
-      var enabled = !LoginStore.isLoggedIn();
-      var button = <Button disabled={enabled} onClick={this.handleSubmit}>Add place</Button>;
-      var input = <Input disabled={enabled} type='text' buttonAfter={button} onChange={ this.onChange } value={ this.state.text } />;
+      var disabled = !PollStore.canVote();
+      var button = <Button disabled={disabled} onClick={this.handleSubmit}>Add place</Button>;
+      var input = <Input disabled={disabled} type='text' buttonAfter={button} onChange={ this.onChange } value={ this.state.text } />;
       return (
         <Row>
           <Col mdOffset={3} md={6}>
