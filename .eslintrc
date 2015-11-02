@@ -1,0 +1,23 @@
+settings:
+  ecmascript: 6
+ecmaFeatures:
+  jsx: true,
+  destructuring: true,
+  arrowFunctions: true,
+  objectLiteralShorthandMethods: true,
+  templateStrings: true,
+env:
+  browser: true
+  node: true
+  amd: true
+rules:
+  quotes:
+        - 2
+  semi:
+        - 2
+  no-underscore-dangle:
+        - 0
+  no-process-exit:
+        - 0
+plugins:
+  - react

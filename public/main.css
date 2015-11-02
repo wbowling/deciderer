@@ -1,0 +1,7 @@
+.btn:focus, .btn:active:focus {
+  outline: none;
+}
+
+.navbar-collapse {
+  overflow: hidden;
+}

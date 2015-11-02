@@ -1,0 +1,7 @@
+"use strict";
+
+
+module.exports = {
+    firebase_app_name: "your_firebase_app_name",
+    debug: false
+};

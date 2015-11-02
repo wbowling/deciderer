@@ -1,0 +1,14 @@
+{
+  "firebase": "deciderer",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "rules": "config/rules.json",
+  "rewrites": [ {
+    "source": "**",
+    "destination": "/index.html"
+  } ]
+}
