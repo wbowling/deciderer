@@ -1,5 +1,5 @@
 {
-  "firebase": "deciderer",
+  "firebase": "your_firebase_app_name",
   "public": "dist",
   "ignore": [
     "firebase.json",

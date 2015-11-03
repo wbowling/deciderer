@@ -36,11 +36,13 @@ var ShowPoll = React.createClass({
       if (PollStore.hasPoll()) {
       var {votes, people} = this.getVotes();
       var places = this.state.places.map(item => <Place key={item} name={item} value={PollStore.hasVoted(item)} />);
-
+      if (places.length === 0) {
+        places = <h5>No options have been added yet!</h5>;
+      }
       var placesVotes = this.state.places.map(place => {return {place: place, votes: (votes[place] || 0)}; });
       placesVotes = _.sortBy(placesVotes, "votes").reverse();
 
-      var date = new Date(this.state.enddate)
+      var date = new Date(this.state.enddate);
         return (
           <div>
             <Jumbotron className="text-center">

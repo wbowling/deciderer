@@ -1,20 +1,21 @@
 {
   "rules": {
     ".read": true,
-        "polls" : {
-          "$poll" : {
-            ".validate": "newData.hasChildren(['enddate']) && newData.child('enddate').isNumber()",
-            "users": {
-              "$uid": {
-                ".write": "auth != null && auth.provider == 'google' && auth.uid == $uid && root.child('polls').child($poll).child('enddate').val() > now"
-                },
-              ".read": true
-            },
-            "places" : {
-              ".read": true,
-              ".write": "auth != null && auth.provider == 'google' && root.child('polls').child($poll).child('enddate').val() > now"
-            }
-          }
+    "polls": {
+      "$poll": {
+        ".validate": "newData.hasChildren(['enddate', 'title', 'admin']) && newData.child('enddate').isNumber()",
+        "users": {
+          "$uid": {
+            ".validate": "newData.hasChildren(['email'])",
+            ".write": "auth != null && auth.provider == 'google' && auth.uid == $uid && root.child('polls').child($poll).child('enddate').val() > now"
+          },
+          ".read": true
+        },
+        "places": {
+          ".read": true,
+          ".write": "auth != null && auth.provider == 'google' && root.child('polls').child($poll).child('enddate').val() > now"
         }
+      }
     }
+  }
 }

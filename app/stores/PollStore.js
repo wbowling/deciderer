@@ -21,7 +21,7 @@ var PollStore = Reflux.createStore({
             if (dataSnapshot.exists()) {
                 data = dataSnapshot.val();
                 data.poll = dataSnapshot.key();
-                data.places = Object.keys(data.places);
+                data.places = data.places ? Object.keys(data.places) : [];
                 debug.log(data);
             } else {
                 data.error = "Poll doesn't exist"
@@ -47,8 +47,9 @@ var PollStore = Reflux.createStore({
         }
     },
     hasVoted(name) {
-        if (LoginStore.isLoggedIn()) {
-            return (data.users[LoginStore.getUid()].votes[name] === 1)
+        if (LoginStore.isLoggedIn() && data.users) {
+            var userVotes = data.users[LoginStore.getUid()];
+            return (userVotes && userVotes.votes && userVotes.votes[name] && userVotes.votes[name] === 1) ? true : false;
         } else {
             return false;
         }
