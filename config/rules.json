@@ -3,6 +3,7 @@
     ".read": true,
     "polls": {
       "$poll": {
+        ".write": "!data.exists()",
         ".validate": "newData.hasChildren(['enddate', 'title', 'admin']) && newData.child('enddate').isNumber()",
         "users": {
           "$uid": {

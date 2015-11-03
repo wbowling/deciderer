@@ -27,7 +27,10 @@ const ShowPoll = React.createClass({
     this.setState(poll)
   },
   getInitialState() {
-    return {}
+    return {
+      places: [],
+      enddate: 0
+    }
   },
   render() {
     if (PollStore.hasPoll()) {

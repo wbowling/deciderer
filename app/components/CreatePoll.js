@@ -4,11 +4,17 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import moment from 'moment'
 import debug from '../constants/debug'
 import LoginStore from '../stores/LoginStore'
+import PollStore from '../stores/PollStore'
+import PollActions from '../actions/PollActions'
 import Reflux from 'reflux'
-
+import { History } from 'react-router'
 
 const CreatePoll = React.createClass({
-  mixins: [ Reflux.listenTo(LoginStore, 'onLoginChange') ],
+  mixins: [
+    Reflux.listenTo(LoginStore, 'onLoginChange'),
+    Reflux.listenTo(PollStore, 'onPollChange'),
+    History
+  ],
   getInitialState() {
     const now = moment()
     const midday = moment().startOf('day').add(12, 'h')
@@ -45,8 +51,11 @@ const CreatePoll = React.createClass({
   },
   createPoll() {
     if (this.state.date && this.state.date.valueOf() > 0 && this.refs.title.getValue()) {
-      debug.log('create')
+      PollActions.createPoll(this.state.date.valueOf(), this.refs.title.getValue())
     }
+  },
+  onPollChange(data) {
+    this.history.pushState(null, '/' + data.poll)
   },
   onLoginChange() {
     this.forceUpdate()

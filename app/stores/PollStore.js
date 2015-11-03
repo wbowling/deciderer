@@ -32,6 +32,12 @@ const PollStore = Reflux.createStore({
       baseRef.child('polls').child(data.poll).child('places').child(place).set(LoginStore.getUid())
     }
   },
+  onCreatePoll(enddate, title) {
+    if (LoginStore.isLoggedIn()) {
+      const ref = baseRef.child('polls').push({ admin: LoginStore.getUid(), enddate: enddate, title: title })
+      PollActions.switchPoll(ref.key())
+    }
+  },
   onVote(vote) {
     if (LoginStore.isLoggedIn()) {
       const email = LoginStore.getEmail()
@@ -63,11 +69,6 @@ const PollStore = Reflux.createStore({
   },
   hasPoll() {
     return (data.poll != null)
-  },
-  createPoll(pollData) {
-    if (LoginStore.isLoggedIn()) {
-      debug.log('Create poll', pollData)
-    }
   }
 })
 
