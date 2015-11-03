@@ -58,7 +58,7 @@ const ShowPoll = React.createClass({
           </Row>
           <Row className="">
             <div className="panel-body">
-              <Col md={2}><h5>Who"s voted ({people.length}):</h5></Col>
+              <Col md={2}><h5>Who's voted ({people.length}):</h5></Col>
               <Col md={10}><People people={people} /></Col>
             </div>
           </Row>
