@@ -65,6 +65,11 @@ var PollStore = Reflux.createStore({
     },
     hasPoll() {
         return (data.poll != null);
+    },
+    createPoll(pollData) {
+        if (LoginStore.isLoggedIn()) {
+
+        }
     }
 });
 

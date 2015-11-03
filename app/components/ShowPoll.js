@@ -1,6 +1,8 @@
+"use strict";
+
 var React = require("react");
 
-var Reflux = require('reflux');
+var Reflux = require("reflux");
 var datejs = require("datejs");
 var {Well, Row, Col, Jumbotron} = require("react-bootstrap");
 
@@ -11,20 +13,20 @@ var People = require("./widgets/People");
 var AddPlace = require("./widgets/AddPlace");
 var Place = require("./widgets/Place");
 var Votes = require("./widgets/Votes");
-var SecondsToGo = require('./widgets/SecondsToGo');
+var SecondsToGo = require("./widgets/SecondsToGo");
 
-var LoginStore = require('../stores/LoginStore');
-var PollStore = require('../stores/PollStore');
-var PollActions = require('../actions/PollActions');
+var LoginStore = require("../stores/LoginStore");
+var PollStore = require("../stores/PollStore");
+var PollActions = require("../actions/PollActions");
 
 
 var ShowPoll = React.createClass({
     mixins: [
-              Reflux.listenTo(LoginStore, 'onLoginChange'),
-              Reflux.listenTo(PollStore, "onPollChange"),
+              Reflux.listenTo(LoginStore, "onLoginChange"),
+              Reflux.listenTo(PollStore, "onPollChange")
     ],
     onLoginChange(data) {
-      this.setState({loggedIn: data.loggedIn})
+      this.setState({loggedIn: data.loggedIn});
     },
     onPollChange: function(poll) {
         this.setState(poll);
@@ -58,7 +60,7 @@ var ShowPoll = React.createClass({
             </Row>
             <Row className="">
               <div className="panel-body">
-                <Col md={2}><h5>Who's voted ({people.length}):</h5></Col>
+                <Col md={2}><h5>Who"s voted ({people.length}):</h5></Col>
                 <Col md={10}><People people={people} /></Col>
               </div>
             </Row>
@@ -95,7 +97,7 @@ var ShowPoll = React.createClass({
     },
 
     getVotes() {
-      var users = this.state.users
+      var users = this.state.users;
       var votes = {};
       var peopleObj = {};
       if (users) {

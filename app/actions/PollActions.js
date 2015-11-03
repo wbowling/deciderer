@@ -5,7 +5,8 @@ var Reflux = require('reflux');
 var PollActions = Reflux.createActions([
     'switchPoll',
     'addPlace',
-    'vote'
+    'vote',
+    'createPoll'
 ]);
 
 module.exports = PollActions;
