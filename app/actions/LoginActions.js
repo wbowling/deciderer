@@ -1,37 +1,38 @@
-'use strict';
-var Reflux = require('reflux');
-var {baseRef} = require('../constants/firebaseUtils');
+import { baseRef } from '../constants/firebaseUtils'
+import Reflux from 'reflux'
+import debug from '../constants/debug'
 
-var LoginActions = Reflux.createActions([
-    'loggedIn',
-    'loggedOut'
-]);
+const LoginActions = Reflux.createActions([
+  'loggedIn',
+  'loggedOut'
+])
 
-
-baseRef.onAuth(function(authData) {
+baseRef.onAuth((authData) => {
   if (authData) {
-    LoginActions.loggedIn(authData);
+    LoginActions.loggedIn(authData)
   } else {
-    LoginActions.loggedOut();
+    LoginActions.loggedOut()
   }
-});
+})
 
 LoginActions.login = () => {
-    baseRef.authWithOAuthPopup("google", (error, authData) => {
-      if (error && error.code === "TRANSPORT_UNAVAILABLE") {
-          baseRef.authWithOAuthRedirect("google", LoginActions.loginHandler, {scope: "email"});
-      } else {
-        LoginActions.loginHandler(error, authData);
-      }
-  }, {scope: "email"});
-};
+  baseRef.authWithOAuthPopup('google', (error, authData) => {
+    if (error && error.code === 'TRANSPORT_UNAVAILABLE') {
+      baseRef.authWithOAuthRedirect('google', LoginActions.loginHandler, { scope: 'email' })
+    } else {
+      LoginActions.loginHandler(error, authData)
+    }
+  }, { scope: 'email' })
+}
 
 LoginActions.logout = () => {
-        baseRef.unauth();
-};
+  baseRef.unauth()
+}
 
 LoginActions.loginHandler = (error, authData) => {
+  if (error) {
+    debug.log(error, authData)
+  }
+}
 
-};
-
-module.exports = LoginActions;
+export default LoginActions

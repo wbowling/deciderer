@@ -1,9 +1,4 @@
-"use strict";
+/* global FIREBASE_NAME */
+import Firebase from 'firebase'
 
-var Firebase = require("firebase");
-
-var firebaseUtils = {
-    baseRef: new Firebase(`https://${FIREBASE_NAME}.firebaseio.com/`)
-};
-
-module.exports = firebaseUtils;
+export const baseRef = new Firebase(`https://${FIREBASE_NAME}.firebaseio.com/`)

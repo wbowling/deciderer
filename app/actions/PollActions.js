@@ -1,12 +1,10 @@
-'use strict';
+import Reflux from 'reflux'
 
-var Reflux = require('reflux');
+const PollActions = Reflux.createActions([
+  'switchPoll',
+  'addPlace',
+  'vote',
+  'createPoll'
+])
 
-var PollActions = Reflux.createActions([
-    'switchPoll',
-    'addPlace',
-    'vote',
-    'createPoll'
-]);
-
-module.exports = PollActions;
+export default PollActions

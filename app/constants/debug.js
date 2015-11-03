@@ -1,11 +1,13 @@
-var debug_mode = DEBUG_MODE;
+/* global DEBUG_MODE */
+/* eslint no-console: 0 */
+const debug_mode = DEBUG_MODE
 
-var debug = {
-    log(...args) {
-        if(console && debug_mode){
-            console.log(...args);
-        }
+const debug = {
+  log(...args) {
+    if(console && debug_mode) {
+      console.log(...args)
     }
-};
+  }
+}
 
-module.exports = debug;
+export default debug

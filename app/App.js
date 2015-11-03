@@ -1,12 +1,10 @@
-"use strict";
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-var {Router, Route, IndexRoute} = require('react-router');
-var createBrowserHistory = require('history/lib/createBrowserHistory');
-var MainLayout = require("./components/MainLayout");
-var ShowPoll = require("./components/ShowPoll");
-var CreatePoll = require("./components/CreatePoll");
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Router, Route, IndexRoute } from 'react-router'
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import MainLayout from './components/MainLayout'
+import ShowPoll from './components/ShowPoll'
+import CreatePoll from './components/CreatePoll'
 
 
 ReactDOM.render((
@@ -15,5 +13,4 @@ ReactDOM.render((
       <IndexRoute component={CreatePoll} />
       <Route path=":poll" component={ShowPoll} />
     </Route>
-  </Router>
-), document.getElementById("app"));
+  </Router>), document.getElementById('app'))
