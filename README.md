@@ -3,10 +3,11 @@ We could never agree on where to go for lunch on a Friday, so I created somethin
 
 deciderer allows you to create a poll for a specified date and time and allows people to vote and add their own options. Letting people vote for multiple options is a quick and easy way to try and keep the most number of people happy (see [Quick and Easy Voting for Normal People](http://www.youtube.com/watch?v=orybDrUj4vA)).
 
+[Here](https://deciderer.firebaseapp.com) is the hosted version.
 
-https://deciderer.firebaseapp.com/ 
+Create ![Creating a poll](http://i.imgur.com/Fm2wzSN.png)
 
-![Image of deciderer example poll](http://i.imgur.com/EIzO5ik.png)
+Vote ![Example poll](http://i.imgur.com/EIzO5ik.png)
 
 
 ## Development
@@ -45,6 +46,7 @@ Lots of great libraries have been used in this project, the main ones are:
 * React-Bootstrap - https://react-bootstrap.github.io/
 * Bootstrap - http://getbootstrap.com/
 * Cyborg Bootstrap Theme - https://bootswatch.com/cyborg/
-
+* react-chartjs - https://github.com/jhudson8/react-chartjs
+* react-bootstrap-daterangepicker https://github.com/skratchdot/react-bootstrap-daterangepicker
 
 
