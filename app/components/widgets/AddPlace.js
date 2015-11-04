@@ -21,11 +21,12 @@ const AddPlace = React.createClass({
       PollActions.addPlace(this.state.text)
       this.setState({ text: '' })
     }
+    e.target.blur()
   },
 
   render() {
     const disabled = !PollStore.canVote()
-    const button = <Button disabled={disabled} onClick={this.handleSubmit}>Add place</Button>
+    const button = <Button disabled={disabled} onClick={this.handleSubmit}>Add option</Button>
     const input = <Input disabled={disabled} type="text" buttonAfter={button} onChange={ this.onChange } value={ this.state.text } />
     return (
       <Row>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Reflux from 'reflux'
-import { Well, Row, Col, Jumbotron } from 'react-bootstrap'
+import { Row, Col, Jumbotron } from 'react-bootstrap'
 import _ from 'lodash'
 import moment from 'moment'
 
@@ -35,38 +35,42 @@ const ShowPoll = React.createClass({
   render() {
     if (PollStore.hasPoll()) {
       const { votes, people } = this.getVotes()
-      let places = this.state.places.map(item => <Place key={item} name={item} value={PollStore.hasVoted(item)} />)
-      if (places.length === 0) {
-        places = <h5>No options have been added yet!</h5>
-      }
-      let placesVotes = this.state.places.map(place => {return { place: place, votes: (votes[place] || 0) } })
-      placesVotes = _.sortBy(placesVotes, 'votes').reverse()
+      const places = this.state.places.map(item => <Place key={item} name={item} value={PollStore.hasVoted(item)} />)
+      let inner
+      if (places.length !== 0) {
 
+        let placesVotes = this.state.places.map(place => {return { place: place, votes: (votes[place] || 0) } })
+        placesVotes = _.sortBy(placesVotes, 'votes').reverse()
+        inner = (<div className="panel text-center">
+                  <Row>
+                    <Col mdOffset={1} md={5} className="panel-body">
+                        {places}
+                    </Col>
+                    <Col md={5} className="panel-body">
+                     <Votes placesVotes={placesVotes} />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <div className="panel-body text-left">
+                      <Col md={12}><People people={people} /></Col>
+                    </div>
+                  </Row>
+                </div>)
+      } else {
+        inner = <span />
+      }
       const date = moment(this.state.enddate)
       return (
         <div>
           <Jumbotron className="text-center">
               <h2>{this.state.title}<br/><small>{date.format('YYYY-M-D')}&nbsp;<small>(<SecondsToGo end={this.state.enddate} />)</small></small></h2>
           </Jumbotron>
-          <Row className="panel text-center">
-              <Col mdOffset={1} md={5} className="panel-body">
-                  {places}
-              </Col>
-              <Col md={5} className="panel-body">
-               <Votes placesVotes={placesVotes} />
-              </Col>
-          </Row>
-          <Row className="">
-            <div className="panel-body">
-              <Col md={2}><h5>Who's voted ({people.length}):</h5></Col>
-              <Col md={10}><People people={people} /></Col>
-            </div>
-          </Row>
+          {inner}
+          <hr />
           <Row>
-            <Well>
                <AddPlace />
-            </Well>
           </Row>
+          <hr />
         </div>
       )
     } else {

@@ -23,7 +23,7 @@ const TopBar = React.createClass({
   },
   render() {
     let adminButton
-    if (this.state.admin) {
+    if (false && this.state.admin) {
       adminButton = <Button onClick={this.edit} eventKey={1}>Edit</Button>
     } else {
       adminButton = <span />
@@ -33,7 +33,7 @@ const TopBar = React.createClass({
               <NavBrand>{this.state.email ? this.state.email : 'Guest (login to vote)'}</NavBrand>
               <Nav right eventKey={0}>
                 <form className="navbar-form navbar-left">
-                  <Button onClick={this.createPoll} eventKey={1}>Create</Button>
+                  <Button bsStyle="success" onClick={this.createPoll} eventKey={1}>Create</Button>
                   {adminButton}
                   <Button onClick={this.toggleLogin} eventKey={1}>{this.state.loggedIn ? 'Logout' : 'Login'}</Button>
                 </form>

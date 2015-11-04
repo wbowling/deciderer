@@ -35,11 +35,11 @@ const CreatePoll = React.createClass({
                       <Col mdOffset={3} md={6} className="panel-body">
                           <h4>Create a Poll</h4>
                           <form>
-                              <Input type="text" placeholder="Poll title" ref="title" />
+                              <Input className="text-center" type="text" placeholder="enter title" ref="title" />
                               <DateRangePicker ranges={this.state.ranges} opens="center" singleDatePicker timePicker minDate={this.state.minDate} onApply={this.datePicked}>
-                                  <Input type="text" value={this.state.date ? this.state.date.format() : '' } placeholder="Select date" />
+                                  <Input className="text-center" type="text" value={this.state.date ? this.state.date.format('MMMM Do YYYY, h:mm a') : '' } placeholder="Select date" />
                               </DateRangePicker>
-                              <Button bsStyle="success" disabled={!LoginStore.isLoggedIn()} onClick={this.createPoll}>Go!</Button>
+                              <Button bsStyle="primary" disabled={!LoginStore.isLoggedIn()} onClick={this.createPoll}>Go!</Button>
                           </form>
                       </Col>
                   </Row>

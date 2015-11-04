@@ -1,14 +1,14 @@
 import React from 'react'
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Label } from 'react-bootstrap'
 
 const People = React.createClass({
   render() {
-    let pT = this.props.people.map(p => <ListGroupItem key={p}>{p}</ListGroupItem>)
-    if (!this.props.people.length) {
-      pT = <ListGroupItem key="None">No one has voted :(</ListGroupItem>
-    }
+    const votedPeople = this.props.people.map(p => <Label key={p}>{p}</Label>)
     return (
-        <ListGroup className="list-inline">{pT}</ListGroup>
+        <div style={{ lineHeight: '42px' }}>
+          {votedPeople}&nbsp;
+          <Label bsStyle="success">Total people voted: {this.props.people.length}</Label>
+        </div>
     )
   }
 })
