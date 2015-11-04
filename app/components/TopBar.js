@@ -2,9 +2,9 @@ import React from 'react'
 import Reflux from 'reflux'
 import { History } from 'react-router'
 import { Navbar, Nav, NavBrand, Button } from 'react-bootstrap'
+
 import LoginStore from '../stores/LoginStore'
 import LoginActions from '../actions/LoginActions'
-
 import PollStore from '../stores/PollStore'
 import debug from '../constants/debug'
 
@@ -30,7 +30,10 @@ const TopBar = React.createClass({
     }
 
     return (<Navbar inverse toggleNavKey={0}>
-              <NavBrand>{this.state.email ? this.state.email : 'Guest (login to vote)'}</NavBrand>
+              <NavBrand>
+                {this.state.email ? this.state.email : 'Guest (login to vote)'}
+                {PollStore.isAdmin() ? ' (Poll admin)' : ''}
+              </NavBrand>
               <Nav right eventKey={0}>
                 <form className="navbar-form navbar-left">
                   <Button bsStyle="success" onClick={this.createPoll} eventKey={1}>Create</Button>

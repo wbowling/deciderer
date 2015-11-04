@@ -19,6 +19,7 @@ const PollStore = Reflux.createStore({
       if (dataSnapshot.exists()) {
         data = dataSnapshot.val()
         data.poll = dataSnapshot.key()
+        data._places = data.places
         data.places = data.places ? Object.keys(data.places) : []
         debug.log(data)
       } else {
@@ -30,6 +31,11 @@ const PollStore = Reflux.createStore({
   onAddPlace(place) {
     if (LoginStore.isLoggedIn()) {
       baseRef.child('polls').child(data.poll).child('places').child(place).set(LoginStore.getUid())
+    }
+  },
+  onDeletePlace(place) {
+    if (LoginStore.isLoggedIn() && this.canDeletePlace(place)) {
+      baseRef.child('polls').child(data.poll).child('places').child(place).remove()
     }
   },
   onCreatePoll(enddate, title) {
@@ -69,6 +75,15 @@ const PollStore = Reflux.createStore({
   },
   hasPoll() {
     return (data.poll != null)
+  },
+  canDeletePlace(place) {
+    if (LoginStore.isLoggedIn() && data._places && data._places[place] && data._places[place] === LoginStore.getUid()) {
+      return true
+    } else if (this.isAdmin()) {
+      return true
+    } else {
+      return false
+    }
   }
 })
 
