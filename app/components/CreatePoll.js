@@ -37,7 +37,7 @@ const CreatePoll = React.createClass({
                           <form>
                               <Input className="text-center" type="text" placeholder="enter title" ref="title" />
                               <DateRangePicker ranges={this.state.ranges} opens="center" singleDatePicker timePicker minDate={this.state.minDate} onApply={this.datePicked}>
-                                  <Input className="text-center" type="text" value={this.state.date ? this.state.date.format('MMMM Do YYYY, h:mm a') : '' } placeholder="Select date" />
+                                  <Input className="text-center" type="text" value={this.state.date ? this.state.date.format('MMMM Do YYYY, h:mm a') : '' } placeholder="select date" />
                               </DateRangePicker>
                               <Button bsStyle="primary" disabled={!LoginStore.isLoggedIn()} onClick={this.createPoll}>Go!</Button>
                           </form>
