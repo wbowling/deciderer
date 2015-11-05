@@ -31,7 +31,7 @@ const TopBar = React.createClass({
 
     return (<Navbar inverse toggleNavKey={0}>
               <NavBrand>
-                {this.state.email ? this.state.email : 'Guest (login to vote)'}
+                {this.state.email ? this.state.email : 'Guest (login to create/vote)'}
                 {PollStore.isAdmin() ? ' (Poll admin)' : ''}
               </NavBrand>
               <Nav right eventKey={0}>
