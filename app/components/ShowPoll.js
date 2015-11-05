@@ -70,7 +70,6 @@ const ShowPoll = React.createClass({
           <Row>
                <AddPlace />
           </Row>
-          <hr />
         </div>
       )
     } else {

@@ -1,6 +1,8 @@
-import TopBar from './TopBar'
 import React from 'react'
 import { Grid } from 'react-bootstrap'
+
+import TopBar from './TopBar'
+import Footer from './Footer'
 
 const MainLayout = React.createClass({
   render() {
@@ -9,6 +11,7 @@ const MainLayout = React.createClass({
         <TopBar />
         <Grid>
             {this.props.children}
+            <Footer />
         </Grid>
     </div>)
   }
